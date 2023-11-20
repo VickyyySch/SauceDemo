@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProductsPage extends BasePage {
+public class ProductsPage extends BasePage{
 
     private final By TITLE = By.cssSelector(".title");
     private final By SHOPPING_CART = By.id("shopping_cart_container");

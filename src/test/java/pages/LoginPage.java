@@ -3,8 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.testng.Assert.assertEquals;
-
 public class LoginPage extends BasePage {
 
     private final By USERNAME_INPUT = By.id("user-name");
@@ -17,7 +15,7 @@ public class LoginPage extends BasePage {
     }
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(BASE_URL);
     }
 
     public void login(String user, String password) {
