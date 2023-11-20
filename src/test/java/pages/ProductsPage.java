@@ -31,5 +31,4 @@ public class ProductsPage extends BasePage{
         driver.findElement(SHOPPING_CART).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='checkout']")));
     }
-
 }
