@@ -1,11 +1,13 @@
 package tests;
 
 import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest{
 
     @Test
     public void successfulLogin() {
@@ -16,6 +18,7 @@ public class LoginTest extends BaseTest {
                 "Products", "User is not logged in or wrong page");
     }
 
+    @Ignore
     @Test
     public void wrongUserName() {
         loginPage.openPage();
@@ -25,7 +28,8 @@ public class LoginTest extends BaseTest {
         assertEquals(loginPage.getError(), "Epic sadface: Username and password do not match any user in this service", "So bad!");
     }
 
-    @Test
+
+    @Test(enabled = false)
     public void wrongPassword() {
 
         loginPage.openPage();
@@ -48,5 +52,24 @@ public class LoginTest extends BaseTest {
         loginPage.login("", "");
 
         assertEquals(loginPage.getError(), "Epic sadface: Username is required", "So bad!");
+    }
+
+    @DataProvider()
+    public Object[][] loginData() {
+        return new Object[][]{
+                {"", "", "Epic sadface: Username is required"},
+                {"standard_user", "", "Epic sadface: Password is required"},
+                {"s_user", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"},
+        };
+    }
+    @Test(dataProvider = "loginData", retryAnalyzer = Retry.class)
+    public void negativeLogIn(String user, String password, String expectedError) {
+        loginPage.openPage();
+        loginPage.login(user, password);
+
+        assertEquals(loginPage.getError(),
+                expectedError,
+                "Epic sadface: Username and password do not match any user in this service");
+
     }
 }
