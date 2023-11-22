@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class CartTest extends BaseTest{
 
-    @Test
+    @Test()
     public void cartWithMultipleProducts() {
 
         loginPage.openPage();

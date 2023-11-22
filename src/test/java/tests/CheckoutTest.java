@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class CheckoutTest extends BaseTest{
 
-    @Test
+    @Test(description = "e2e")
     public void checkout(){
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
